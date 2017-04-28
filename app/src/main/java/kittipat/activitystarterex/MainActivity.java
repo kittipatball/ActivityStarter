@@ -1,12 +1,10 @@
 package kittipat.activitystarterex;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import activitystarter.ActivityStarter;
 import activitystarter.Arg;
 import activitystarter.MakeActivityStarter;
 import butterknife.BindView;
@@ -14,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import kittipat.activitystarterex.Data.Student;
+import kittipat.activitystarterex.Fragment.*;
 
 /**
  * Created by Kittipat on 26-Apr-17.
@@ -24,6 +23,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.btnSendData) Button btnSendData;
     @BindView(R.id.btnSendDataParcelable) Button btnSendDataParcelable;
     @BindView(R.id.btnSendDataToThisPage) Button btnSendDataToThisPage;
+    @BindView(R.id.btnSendDataToFragment) Button btnSendDataToFragment;
 
     @Arg Student student;
 
@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity {
 
     @DebugLog
     private String displayData() {
+        Toast.makeText(getApplicationContext(),"EditName : " + student.name,Toast.LENGTH_SHORT).show();
         return String.valueOf(" Name : " + student.name + " Number : " + student.id + " Grade : " + student.grade);
     }
 
@@ -60,4 +61,9 @@ public class MainActivity extends BaseActivity {
         StudentForResultActivityStarter.start(MainActivity.this,student);
     }
 
+    @OnClick(R.id.btnSendDataToFragment)
+    public void sendDataToFragment(View v){
+        Student student = new Student(55051004,"Krit","A",true);
+        BlankFragmentActivityStarter.start(this,student);
+    }
 }

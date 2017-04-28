@@ -37,6 +37,6 @@ public class StudentParcelableActivity extends BaseActivity {
         txtName.setText(student.name);
         txtGrade.setText(String.valueOf(student.grade));
         txtNumber.setText(String.valueOf(student.id));
-        return String.valueOf("Name : " + student.name + " Number : " + student.id + " Grade : " + student.grade);
+        return String.valueOf("Name : " + student.name + "," + " Number : " + student.id + "," + " Grade : " + student.grade);
     }
 }
