@@ -1,7 +1,7 @@
 package kittipat.activitystarterex;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import activitystarter.Arg;
@@ -11,12 +11,8 @@ import butterknife.ButterKnife;
 import hugo.weaving.DebugLog;
 import kittipat.activitystarterex.Data.Student;
 
-/**
- * Created by Kittipat on 26-Apr-17.
- */
-
 @MakeActivityStarter
-public class StudentParcelableActivity extends BaseActivity {
+public class StudentForResultActivity extends BaseActivity {
 
     @BindView(R.id.txtName)  TextView txtName;
     @BindView(R.id.txtGrade)  TextView txtGrade;
@@ -29,14 +25,27 @@ public class StudentParcelableActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_parcelable);
         ButterKnife.bind(this);
-        displayResult(student);
+        displayData();
+        EditNameStudent();
     }
 
     @DebugLog
-    private String displayResult(Student student) {
+    private String EditNameStudent() {
+        student.name = "Wasu";
+        return String.valueOf("Name : " + student.name);
+    }
+
+    @DebugLog
+    private String displayData() {
         txtName.setText(student.name);
         txtGrade.setText(String.valueOf(student.grade));
         txtNumber.setText(String.valueOf(student.id));
-        return String.valueOf("Name : " + student.name + " Number : " + student.id + " Grade : " + student.grade);
+        return String.valueOf("Name : " + student.name + "," + " Number : " + student.id + "," + " Grade : " + student.grade);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivityStarter.start(this,student);
     }
 }

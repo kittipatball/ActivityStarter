@@ -14,21 +14,31 @@
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="0dp"
-        android:text="SendData"
+        android:layout_marginTop="8dp"
+        android:text="Send Data"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/btnSendDataParcelable"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
         app:layout_constraintVertical_bias="0.253" />
 
     <Button
         android:id="@+id/btnSendDataParcelable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SendParcelable"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnSendData"
         android:layout_marginRight="46dp"
+        android:text="Send Parcelable"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnSendData"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/btnSendDataToThisPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        android:text="Send Data to this page"
+        app:layout_constraintLeft_toLeftOf="@+id/btnSendData"
+        app:layout_constraintTop_toBottomOf="@+id/btnSendData" />
 </android.support.constraint.ConstraintLayout>

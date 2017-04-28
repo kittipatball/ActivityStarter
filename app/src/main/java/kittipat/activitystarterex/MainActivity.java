@@ -9,41 +9,55 @@ import android.widget.Button;
 import activitystarter.ActivityStarter;
 import activitystarter.Arg;
 import activitystarter.MakeActivityStarter;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import kittipat.activitystarterex.Data.Student;
 
 /**
  * Created by Kittipat on 26-Apr-17.
  */
-
+@MakeActivityStarter
 public class MainActivity extends BaseActivity {
 
-    Button btnSendData;
-    Button btnSendDataParcelable;
+    @BindView(R.id.btnSendData) Button btnSendData;
+    @BindView(R.id.btnSendDataParcelable) Button btnSendDataParcelable;
+    @BindView(R.id.btnSendDataToThisPage) Button btnSendDataToThisPage;
+
+    @Arg Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setInit();
+        ButterKnife.bind(this);
 
-        btnSendData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StudentActivityStarter.start(MainActivity.this,"Kittipat",3,'A',true);
-            }
-        });
-
-        btnSendDataParcelable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Student student = new Student(4,"Piyawat",'A',true);
-                StudentParcelableActivityStarter.start(MainActivity.this,student);
-            }
-        });
+        if(student != null){
+            displayData();
+        }
     }
 
-    private void setInit() {
-        btnSendData = (Button) findViewById(R.id.btnSendData);
-        btnSendDataParcelable = (Button) findViewById(R.id.btnSendDataParcelable);
+    @DebugLog
+    private String displayData() {
+        return String.valueOf(" Name : " + student.name + " Number : " + student.id + " Grade : " + student.grade);
     }
+
+    @OnClick(R.id.btnSendData)
+    public void sendData(View v){
+        StudentActivityStarter.start(MainActivity.this,"Kittipat",55051001,'A',true);
+    }
+
+    @OnClick(R.id.btnSendDataParcelable)
+    public void sendDataParcelable(View v){
+        Student student = new Student(55051002,"Piyawat","A",true);
+        StudentParcelableActivityStarter.start(MainActivity.this,student);
+    }
+
+    @OnClick(R.id.btnSendDataToThisPage)
+    public void sendDataToThisPage(View v){
+        Student student = new Student(55051003,"Wasan","A",true);
+        StudentForResultActivityStarter.start(MainActivity.this,student);
+    }
+
 }

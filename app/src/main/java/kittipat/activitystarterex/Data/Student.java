@@ -11,10 +11,10 @@ public class Student implements Parcelable {
 
     public int id;
     public String name;
-    public char grade;
+    public String grade;
     public boolean passing;
 
-    public Student(int id, String name, char grade, boolean passing) {
+    public Student(int id, String name, String grade, boolean passing) {
         this.id = id;
         this.name = name;
         this.grade = grade;
@@ -24,6 +24,7 @@ public class Student implements Parcelable {
     protected Student(Parcel in) {
         id = in.readInt();
         name = in.readString();
+        grade = in.readString();
         passing = in.readByte() != 0;
     }
 
@@ -48,6 +49,7 @@ public class Student implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
+        dest.writeString(grade);
         dest.writeByte((byte) (passing ? 1 : 0));
     }
 }
